@@ -34,12 +34,13 @@ export const getUser = async (req, res) => {
   }
 };
 
+/* Check User*/
 export const checkEmail = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email } = req.query; 
     const user = await userModel.findOne({ email: email });
     if (user) {
-      res.status(200).send("User exists");
+      res.status(200).send(user);
     } else {
       res.status(400).send("User does not exist");
     }
